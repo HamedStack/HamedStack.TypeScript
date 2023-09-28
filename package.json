@@ -1,0 +1,58 @@
+{
+    "name": "@hamedstack/typescript",
+    "version": "1.0.0",
+    "description": "A collection of helpful utilities, types, and decorators for TypeScript/JavaScript projects.",
+    "keywords": [
+        "utilities",
+        "collection",
+        "types",
+        "TypeScript",
+        "JavaScript",
+        "helper",
+        "helpers",
+        "utility",
+        "type",
+        "methods"
+    ],
+    "license": "MIT",
+    "source": "src/index.ts",
+    "main": "dist/commonjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/commonjs/index.d.ts",
+    "typings": "dist/commonjs/index.d.ts",
+    "engines": {
+        "node": ">=18",
+        "npm": ">=8"
+    },
+    "files": [
+        "dist/*"
+    ],
+    "homepage": "https://github.com/HamedFathi/beyond-typescript",
+    "bugs": {
+        "url": "https://github.com/HamedFathi/beyond-typescript/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/HamedFathi/beyond-typescript"
+    },
+    "scripts": {
+        "build": "rimraf dist && tsc && tsc --build tsconfig.commonjs.json",
+        "lint": "eslint . --fix && npm run formatter",
+        "formatter": "prettier --write . --log-level silent",
+        "lint-build": "npm run lint && npm run formatter && npm run build",
+        "doc": "rimraf docs && typedoc src/index.ts --excludeExternals --externalPattern \"**/node_modules/**\"",
+        "aio": "npm run lint-build && npm run doc"
+    },
+    "devDependencies": {
+        "@types/node": "^20.7.1",
+        "@typescript-eslint/eslint-plugin": "^6.7.3",
+        "@typescript-eslint/parser": "^6.7.3",
+        "eslint": "^8.50.0",
+        "eslint-config-prettier": "^9.0.0",
+        "eslint-plugin-prettier": "^5.0.0",
+        "prettier": "^3.0.3",
+        "rimraf": "~5.0.5",
+        "typedoc": "^0.25.1",
+        "typescript": "^5.2.2"
+    }
+}
