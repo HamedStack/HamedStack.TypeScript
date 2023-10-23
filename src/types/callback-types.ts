@@ -8,6 +8,12 @@ type CallbackPromiseFunctionVariadicReturn = (
     ...args: unknown[]
 ) => Promise<unknown>;
 
+type PredicateFunction = (arg: unknown) => boolean;
+type PredicateFunctionVariadic = (...args: unknown[]) => boolean;
+
+type PredicateOfTFunction<T> = (arg: T) => boolean;
+type PredicateOfTFunctionVariadic<T> = (...args: T[]) => boolean;
+
 export {
     CallbackFunction,
     CallbackFunctionVariadic,
@@ -15,4 +21,8 @@ export {
     CallbackPromiseFunction,
     CallbackPromiseFunctionVariadic,
     CallbackPromiseFunctionVariadicReturn,
+    PredicateFunction,
+    PredicateFunctionVariadic,
+    PredicateOfTFunction,
+    PredicateOfTFunctionVariadic,
 };
