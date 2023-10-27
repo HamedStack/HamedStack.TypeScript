@@ -417,6 +417,10 @@ function isNotNullOrEmpty(str: string) {
     return !isNullOrEmpty(str);
 }
 
+function isStringEmptyOrUndefined(tag: string | null | undefined): boolean {
+    return !tag || typeof tag === 'undefined' || tag.trim() === '';
+}
+
 export {
     camelCase,
     capitalize,
@@ -432,6 +436,7 @@ export {
     isNotNullOrWhiteSpace,
     isNullOrEmpty,
     isNullOrWhiteSpace,
+    isStringEmptyOrUndefined,
     kebabCase,
     lowerCase,
     lowerFirst,
