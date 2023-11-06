@@ -76,6 +76,19 @@ type Literal<T> = T extends boolean | number | string
 
 type KeyOfUnion<T> = T extends unknown ? keyof T : never;
 
+
+type Prettify<T> = {
+    [K in keyof T]: T[K];
+} & {};
+
+type Combine<T1, T2> = Prettify<
+    {
+        [K in keyof (T1 | T2)]: T1[K] | T2[K];
+    } & Partial<T1 & T2>>;
+
+type MapByKeys<T extends Record<string, unknown>, K extends keyof T = keyof T> = { [P in K]: T[P]; };
+
+
 export {
     DeepPartialObject,
     DeepReadonly,
@@ -109,4 +122,7 @@ export {
     ValueOf,
     WriteableKeys,
     WriteableObject,
+    Prettify,
+    Combine,
+    MapByKeys,
 };
