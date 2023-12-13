@@ -88,6 +88,7 @@ type Combine<T1, T2> = Prettify<
 
 type MapByKeys<T extends Record<string, unknown>, K extends keyof T = keyof T> = { [P in K]: T[P]; };
 
+type UIEventHandlers = keyof HTMLElement & `on${string}`;
 
 export {
     DeepPartialObject,
@@ -125,4 +126,5 @@ export {
     Prettify,
     Combine,
     MapByKeys,
+    UIEventHandlers,
 };
