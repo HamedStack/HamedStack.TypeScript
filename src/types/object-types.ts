@@ -76,7 +76,6 @@ type Literal<T> = T extends boolean | number | string
 
 type KeyOfUnion<T> = T extends unknown ? keyof T : never;
 
-
 type Prettify<T> = {
     [K in keyof T]: T[K];
 } & {};
@@ -84,11 +83,43 @@ type Prettify<T> = {
 type Combine<T1, T2> = Prettify<
     {
         [K in keyof (T1 | T2)]: T1[K] | T2[K];
-    } & Partial<T1 & T2>>;
+    } & Partial<T1 & T2>
+>;
 
-type MapByKeys<T extends Record<string, unknown>, K extends keyof T = keyof T> = { [P in K]: T[P]; };
+type MapByKeys<
+    T extends Record<string, unknown>,
+    K extends keyof T = keyof T,
+> = { [P in K]: T[P] };
 
 type UIEventHandlers = keyof HTMLElement & `on${string}`;
+
+type PickByPrefix<T, Prefix extends string> = {
+    [K in keyof T as K extends `${Prefix}${infer _End}` ? K : never]: T[K];
+};
+
+type PickBySuffix<T, Suffix extends string> = {
+    [K in keyof T as K extends `${infer _Start}${Suffix}` ? K : never]: T[K];
+};
+
+type PickBySubstring<T, Substring extends string> = {
+    [K in keyof T as K extends `${infer _Start}${Substring}${infer _End}`
+        ? K
+        : never]: T[K];
+};
+
+type OmitByPrefix<T, Prefix extends string> = {
+    [K in keyof T as K extends `${Prefix}${infer _End}` ? never : K]: T[K];
+};
+
+type OmitBySuffix<T, Suffix extends string> = {
+    [K in keyof T as K extends `${infer _Start}${Suffix}` ? never : K]: T[K];
+};
+
+type OmitBySubstring<T, Substring extends string> = {
+    [K in keyof T as K extends `${infer _Start}${Substring}${infer _End}`
+        ? never
+        : K]: T[K];
+};
 
 export {
     DeepPartialObject,
@@ -127,4 +158,10 @@ export {
     Combine,
     MapByKeys,
     UIEventHandlers,
+    PickByPrefix,
+    PickBySuffix,
+    PickBySubstring,
+    OmitByPrefix,
+    OmitBySuffix,
+    OmitBySubstring,
 };
