@@ -418,7 +418,7 @@ function isNotNullOrEmpty(str: string) {
 }
 
 function isStringEmptyOrUndefined(tag: string | null | undefined): boolean {
-    return !tag || typeof tag === 'undefined' || tag.trim() === '';
+    return !tag || typeof tag === "undefined" || tag.trim() === "";
 }
 
 export {
